@@ -6,7 +6,7 @@ app.post('/send-webhook', (req, res) => {
     }
 
     // Replace YOUR_DISCORD_WEBHOOK_URL_HERE with your actual Discord webhook URL
-    const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL_HERE';
+    const webhookUrl = 'https://discord.com/api/webhooks/1233966353581477928/-9BcPdqgj7G-BEdN4oIBVf0cRq85JwwTPD4_F9Xgx2m3cTIsN4USkiE6LYfizmI-F4AJ';
 
     const payload = {
         content: `Title: ${title}\nContent: ${content}\nReason: ${reason}`
