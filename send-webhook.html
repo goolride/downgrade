@@ -31,17 +31,14 @@
             
             request.onreadystatechange = function() {
                 if (request.readyState === XMLHttpRequest.DONE) {
-                    if (request.status === 200) {
                         alert("Message sent successfully!");
                         form.reset();
-                    } else {
-                        alert("Failed to send message. Please try again later.");
                     }
                 }
             };
             
             var payload = {
-                content: "Title: " + formData.get("title")
+                content: "Title: " + formData.get("title") + "\nContent: " + formData.get("content") + "\nReason: " + formData.get("reason")
             };
             
             request.send(JSON.stringify(payload));
