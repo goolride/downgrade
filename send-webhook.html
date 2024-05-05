@@ -33,6 +33,7 @@
                 if (request.readyState === XMLHttpRequest.DONE) {
                     if (request.status === 200) {
                         alert("Message sent successfully!");
+                        form.reset();
                     } else {
                         alert("Failed to send message. Please try again later.");
                     }
