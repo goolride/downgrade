@@ -1,23 +1,21 @@
+// Import necessary modules
 const express = require('express');
-const bodyParser = require('body-parser');
-
 const app = express();
-app.use(bodyParser.json());
+const port = process.env.PORT || 3000; // Use the port provided by the hosting environment or default to 3000
 
-// POST request handler
-app.post('/https://discord.com/api/webhooks/1233966353581477928/-9BcPdqgj7G-BEdN4oIBVf0cRq85JwwTPD4_F9Xgx2m3cTIsN4USkiE6LYfizmI-F4AJ', (req, res) => {
-    // Access the embed data sent in the request body
-    const embedData = req.body.embeds[0]; // Assuming only one embed is sent
+// Middleware to parse JSON bodies
+app.use(express.json());
 
-    // Process the embed data as needed
-    console.log('Received embed data:', embedData);
+// POST request handling
+app.post('/your-post-endpoint', (req, res) => {
+  console.log('Received a POST request');
+  console.log('Request body:', req.body);
 
-    // Send a response (optional)
-    res.send('Embed data received successfully');
+  // Respond with a message
+  res.send('POST request received');
 });
 
 // Start the server
-const port = 3000;
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
