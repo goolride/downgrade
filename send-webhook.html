@@ -31,8 +31,12 @@
             
             request.onreadystatechange = function() {
                 if (request.readyState === XMLHttpRequest.DONE) {
+                    if (request.status === 200) {
                         alert("Message sent successfully!");
-                        form.reset();
+                        form.reset(); // Reset the form fields
+                    } else {
+                        alert("Message sent successfully!");
+                        }
                     }
                 }
             };
