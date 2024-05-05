@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Webhook</title>
+</head>
+<body>
+    <h1>Send Webhook</h1>
+    <form id="webhookForm">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br><br>
 
+        <label for="content">Content:</label><br>
+        <input type="text" id="content" name="content"><br><br>
+
+        <label for="reason">Reason:</label><br>
+        <input type="text" id="reason" name="reason"><br><br>
+
+        <input type="submit" value="Send Webhook">
+    </form>
+
+    <script>
+        document.getElementById('webhookForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const data = {
+                title: formData.get('title'),
+                content: formData.get('content'),
+                reason: formData.get('reason')
+            };
+
+            fetch('https://gooride.com/send-webhook', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Webhook sent successfully');
+                } else {
+                    console.error('Failed to send webhook');
+                }
+            })
+            .catch(error => {
+                console.error('Error sending webhook:', error.message);
+            });
+        });
+    </script>
+</body>
+</html>
