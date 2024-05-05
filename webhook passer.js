@@ -1,21 +1,21 @@
-// Import necessary modules
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000; // Use the port provided by the hosting environment or default to 3000
+function sendWebhookToServer(title, content, reason) {
+    const data = { title, content, reason };
+    fetch('https://gooride.com/send-webhook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Webhook sent to server');
+        } else {
+            console.error('Failed to send webhook to server');
+        }
+    })
+    .catch(error => {
+        console.error('Error sending webhook to server:', error.message);
+    });
+}
 
-// Middleware to parse JSON bodies
-app.use(express.json());
-
-// POST request handling
-app.post('/your-post-endpoint', (req, res) => {
-  console.log('Received a POST request');
-  console.log('Request body:', req.body);
-
-  // Respond with a message
-  res.send('POST request received');
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// Example usage
+sendWebhookToServer('Title', 'Content', 'Reason');
