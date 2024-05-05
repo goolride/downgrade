@@ -1,6 +1,6 @@
 function sendWebhookToServer(title, content, reason) {
     const data = { title, content, reason };
-    fetch('https://goolride.com', {
+    fetch('https://goolride.com/send-webhook', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
