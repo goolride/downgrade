@@ -1,13 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors'); // Add this line
+const cors = require('cors');
+const fetch = require('node-fetch');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors()); // Add this line to enable CORS
+app.use(cors());
 app.use(bodyParser.json());
 
-// Your existing /send-webhook endpoint
 app.post('/send-webhook', (req, res) => {
     const { title, content, reason } = req.body;
 
@@ -15,8 +15,7 @@ app.post('/send-webhook', (req, res) => {
         return res.status(400).json({ error: 'Title, content, and reason are required' });
     }
 
-    // Replace YOUR_DISCORD_WEBHOOK_URL_HERE with your actual Discord webhook URL
-    const webhookUrl = 'https://discord.com/api/webhooks/1233966353581477928/-9BcPdqgj7G-BEdN4oIBVf0cRq85JwwTPD4_F9Xgx2m3cTIsN4USkiE6LYfizmI-F4AJ';
+    const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL_HERE';
 
     const payload = {
         content: `Title: ${title}\nContent: ${content}\nReason: ${reason}`
